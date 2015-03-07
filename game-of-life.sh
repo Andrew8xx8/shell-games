@@ -1,11 +1,11 @@
 #!/bin/bash
+stty -echo
 
 # Init output
 OLD_IFS="$IFS"
 IFS=
 
 tput clear
-source $(dirname $0)/lodash.sh
 
 tput civis
 
@@ -87,12 +87,31 @@ function step {
   done
 }
 
-echo ".##......######..######..######."
-echo ".##........##....##......##....."
-echo ".##........##....####....####..."
-echo ".##........##....##......##....."
-echo ".######..######..##......######."
-echo "................................"
+tput cup $(($TOP - 5)) $(($SCREEN_WIDTH / 2 - 16))
+echo " ______  _______ _______ _______ "
+tput cup $(($TOP - 4)) $(($SCREEN_WIDTH / 2 - 16))
+echo "|     |_|_     _|    ___|    ___|"
+tput cup $(($TOP - 3)) $(($SCREEN_WIDTH / 2 - 16))
+echo "|       |_|   |_|    ___|    ___|"
+tput cup $(($TOP - 2)) $(($SCREEN_WIDTH / 2 - 16))
+echo "|_______|_______|___|   |_______|"
+line=""
+for (( column = 0; column <= WIDTH; column++ ))
+do
+  line+="_"
+done
+tput cup $(($TOP - 1)) $(($LEFT))
+echo $line
+tput cup $(($TOP + $HEIGHT)) $(($LEFT))
+echo $line
+
+for (( row = 0; row <= HEIGHT; row++ ))
+do
+tput cup $(($TOP + $row)) $(($LEFT - 1))
+echo "|"
+tput cup $(($TOP + $row)) $(($LEFT + $WIDTH + 1))
+echo "|"
+done
 
 # Init by random
 for (( row = 0; row < HEIGHT; row++ ))
