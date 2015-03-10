@@ -1,6 +1,6 @@
 # SHELL GAMES
 
-Simple games written on bash. Just for lulz
+Simple games written in bash. Just for lulz
 
 ## Game Of Life
 
