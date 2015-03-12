@@ -201,6 +201,7 @@ function move {
     ballDY=$((-ballDY))
     ballY=$((ballY))
     briks[$index]=0
+    playSound
   fi
 
   drawBall
@@ -244,6 +245,10 @@ function exitGame {
   tput cvvis
   stty echo
   exit 0
+}
+
+function playSound {
+  echo -en "\007"
 }
 
 function startGame {
