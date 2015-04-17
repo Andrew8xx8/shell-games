@@ -217,7 +217,7 @@ function move {
 
 function calcPlateS {
   plateS=" +"
-  for (( i = 0; i < $((plateW - 2)); i++ ))
+  for (( i = 0; i < $((plateW - 1)); i++ ))
   do
     plateS+="-"
   done
@@ -241,8 +241,6 @@ function exitGame {
   trap exit ALRM
   tput cnorm
   IFS="$OLD_IFS"
-  tput cvvis
-  stty echo
   exit 0
 }
 
@@ -267,7 +265,7 @@ move
 
 while :
 do
-  read -s -n 1 key
+  read -rsn3 -d '' -n 1 key
   case "$key" in
     h)
       if [ $state == 'stop' ]
